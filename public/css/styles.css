@@ -2,22 +2,39 @@ html {
   min-height: 100%;
   position: relative;
 }
+body{
+  background-color: rgb(245, 233, 233);
+}
+.bg{
+  border-color: black;
+}
 
 .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
 }
 .navbar {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     border: 0;
     border-radius: 0;
-    margin-bottom: 0;
-    font-size: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
     letter-spacing: 5px;
+    background-color: rgb(19, 230, 188);
 }
 .navbar-nav  li a:hover {
     color: #1abc9c !important;
+}
+.txt-color{
+  color: grey;
+  font-weight: bold;
+  text-shadow: black;
+  
+}
+.drop-cap::first-letter{
+-webkit-initial-letter:4;
+initial-letter: 4;
 }
 
 .footer-padding {

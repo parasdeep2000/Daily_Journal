@@ -1,12 +1,13 @@
 
 <%- include("partials/header"); -%>
-    <h1>Home</h1>
+<div data-spy="scroll" data-target=".navbar" data-offset="50">
+    <h1 class="txt-color">Home</h1>
     <p> <%= startingContent %> </p>
-
+    <img src="https://images.unsplash.com/photo-1617329672092-baae0031dca4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" width ="1150" height="600">; 
 
   <%  posts.forEach(function(post){ %>
 
-    <h1><%=post.title%></h1>
+    <h1 class="txt-color"><%=post.title%></h1>
     <p>
     <%=post.content.substring(0, 100) + " ..."%>
     <a href="/posts/<%=post._id%>">Read More</a>
@@ -15,5 +16,5 @@
 
     <% }) %>
 
-
+  </div>
 <%- include("partials/footer"); -%>

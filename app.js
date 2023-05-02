@@ -6,7 +6,7 @@ const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
 
-const homeStartingContent = "Website is for blogging made from complete scratch only for the user for there understanding.It is made for the daily user's records.Helping them for daily recording...";
+const homeStartingContent = "Website is for blogging made from complete scratch only for the user for there ease of use.It is made for the daily user's journal.Helping them for daily journal...";
 const aboutContent = "Simple Blogging web site. For composing new blog we need to go to (/compose). ";
 const contactContent = "For reporting any issues or for updating contact me at ";
 const app = express();
