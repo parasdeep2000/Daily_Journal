@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
+const encrypt = require("mongoose-encryption");
 
 const homeStartingContent = "Website is for blogging made from complete scratch only for the user for there ease of use.It is made for the daily user's journal.Helping them for daily journal...";
 const aboutContent = "Simple Blogging web site. For composing new blog we need to go to (/compose). ";
@@ -12,6 +13,7 @@ const contactContent = "For reporting any issues or for updating contact me at "
 const app = express();
 
 mongoose.connect("mongodb+srv://admin-paras:Test123@cluster0.g9txaqg.mongodb.net/blogDB");
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,7 +25,14 @@ const postSchema={
 };
 const Post = mongoose.model("Post",postSchema);
 
+const userSchema=new mongoose.Schema({
+  email:String,
+  password:String
+});
 
+const secret="thisisourlittlesecret";
+userSchema.plugin(encrypt,{secret:secret,encryptedFields:["password"]});
+const User = new mongoose.model("User",userSchema);
 
 
 
@@ -79,6 +88,40 @@ app.get("/posts/:postId", function(req, res){
     });
   });
   
+  
+});
+
+app.get("/register",function(req,res){
+  res.render("register");
+})
+
+app.post("/register",function(req,res){
+  const newUser = new User({
+      email:req.body.username,
+      password:req.body.password
+  });
+
+  const username = req.body.username;
+  const password = req.body.password;
+
+  User.findOne({email:username}).then(function(foundUser)
+  {
+      if(foundUser){
+          if(foundUser.password === password){
+              res.render("Aregister");
+          }
+      }
+      else{
+          newUser.save().then(function(){
+              res.render("compose");
+          }).catch(function(error){
+              console.log(error);
+          });
+      }
+  }).catch(function(error){
+      console.log(error);
+  })
+
   
 });
 
